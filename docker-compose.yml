@@ -7,7 +7,7 @@ services:
         NODE_ENV: ${NODE_ENV:-local}
     container_name: sponge-app
     ports:
-      - '${PORT:-3000}:3000'
+      - '${PORT}:3000'
     env_file:
       - .env
     environment:

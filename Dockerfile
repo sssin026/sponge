@@ -1,6 +1,6 @@
 FROM node:24-alpine AS builder
 
-WORKDIR /app
+WORKDIR /sponge
 
 # Install dependencies
 COPY package.json yarn.lock ./
@@ -21,7 +21,7 @@ RUN yarn build
 # Runner Stage
 FROM node:24-alpine AS runner
 
-WORKDIR /app
+WORKDIR /sponge
 
 ENV NODE_ENV ${NODE_ENV}
 
@@ -31,7 +31,7 @@ COPY package.json yarn.lock ./
 RUN yarn install --production --frozen-lockfile
 
 # Copy built application and generated files
-COPY --from=builder /app/dist ./dist
+COPY --from=builder /sponge/dist ./dist
 # Copy custom prisma output
 # COPY --from=builder /app/src/prisma/generated ./src/prisma/generated
 
