@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.2.0",
   "engineVersion": "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3",
   "activeProvider": "postgresql",
-  "inlineSchema": "model User {\n  id      Int     @id @default(autoincrement())\n  email   String  @unique\n  name    String\n  isAdmin Boolean @default(false)\n}\n\n// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../src/prisma/generated\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n",
+  "inlineSchema": "enum Discipline {\n  SCUBA // 스쿠버\n  FREE_DIVING // 프리다이빙\n}\n\nenum CetificationType {\n  OPEN_WATER_DIVER // 레벨1\n  ADVANCED_OPEN_WATER_DIVER // 레벨2\n  RESCUE_DIVER // 레벨3\n  DIVE_MASTER // 마스터\n  INSTRUCTOR // 강사\n  TRAINER // 트레이너\n  SPECIALTY // 스페셜티\n}\n\nmodel Organization {\n  id        Int             @id @default(autoincrement())\n  name      String\n  address   String\n  phone     String\n  certs     Certification[]\n  // --------------------------------------------------------\n  createdAt DateTime        @default(now())\n  updatedAt DateTime        @updatedAt\n}\n\nmodel Certification {\n  id             Int                 @id @default(autoincrement())\n  discipline     Discipline          @default(SCUBA) // 종목\n  organization   Organization        @relation(fields: [organizationId], references: [id]) // 발급 기관 \n  organizationId Int\n  type           CetificationType // 자격증 종류\n  isProfessional Boolean             @default(false) // 프로 자격증 여부\n  name           String // 자격증 이름\n  description    String? // 자격증 설명\n  // --------------------------------------------------------\n  users          UserCertification[]\n  // --------------------------------------------------------\n  createdAt      DateTime            @default(now())\n  updatedAt      DateTime            @updatedAt\n}\n\nmodel Club {\n  id      Int    @id @default(autoincrement())\n  name    String\n  address String\n  phone   String\n\n  // --------------------------------------------------------\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nenum ShopType {\n  DIVE_SHOP // 다이브샵\n  DIVE_CENTER // 다이브센터\n}\n\nmodel Shop {\n  id              Int                 @id @default(autoincrement())\n  type            ShopType            @default(DIVE_SHOP) // 샵 종류\n  shopNo          String              @unique // 고유번호\n  name            String\n  address         String\n  phone           String\n  // --------------------------------------------------------\n  instructedCerts UserCertification[] @relation(\"InstructedCerts\")\n  // --------------------------------------------------------\n  createdAt       DateTime            @default(now())\n  updatedAt       DateTime            @updatedAt\n}\n\nenum UserType {\n  NORMAL // 일반 회원\n  CERTIFIED // 자격증 보유자\n  INSTRUCTOR // 강사\n}\n\nenum Gender {\n  MALE // 남성\n  FEMALE // 여성\n}\n\nmodel User {\n  id          Int                 @id @default(autoincrement())\n  type        UserType            @default(NORMAL) // 사용자 종류\n  email       String              @unique // 이메일 (로그인 ID)\n  password    Password? // 비밀번호\n  name        String // 이름\n  phone       String? // 전화번호\n  birth       DateTime? // 생년월일\n  address     String? // 주소\n  gender      Gender? // 성별\n  isActive    Boolean             @default(true) // 활성 사용자 여부\n  // --------------------------------------------------------\n  issuedCerts UserCertification[] @relation(\"IssuedCerts\") // 발급 자격증\n  ownedCerts  UserCertification[] @relation(\"OwnedCerts\") // 보유 자격증\n  // --------------------------------------------------------\n  createdAt   DateTime            @default(now()) // 생성일\n  updatedAt   DateTime            @updatedAt // 수정일\n}\n\nmodel UserCertification {\n  id           Int           @id @default(autoincrement())\n  certNo       String // 인증 번호\n  certDate     DateTime // 인증 날짜\n  user         User          @relation(\"OwnedCerts\", fields: [userId], references: [id]) // 보유자\n  userId       Int\n  cert         Certification @relation(fields: [certId], references: [id]) // 자격증\n  certId       Int\n  instructor   User?         @relation(\"IssuedCerts\", fields: [instructorId], references: [id]) // 발급자\n  instructorId Int?\n  shop         Shop?         @relation(\"InstructedCerts\", fields: [shopId], references: [id]) // 교육장\n  shopId       Int?\n  // --------------------------------------------------------\n  createdAt    DateTime      @default(now()) // 생성일\n  updatedAt    DateTime      @updatedAt // 수정일\n}\n\nmodel Password {\n  hash  String // 해시된 비밀번호\n  User  User   @relation(fields: [email], references: [email]) // 사용자 정보\n  email String @unique // 사용자 이메일\n}\n\n// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../src/prisma/generated\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"isAdmin\",\"kind\":\"scalar\",\"type\":\"Boolean\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Organization\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"certs\",\"kind\":\"object\",\"type\":\"Certification\",\"relationName\":\"CertificationToOrganization\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Certification\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"discipline\",\"kind\":\"enum\",\"type\":\"Discipline\"},{\"name\":\"organization\",\"kind\":\"object\",\"type\":\"Organization\",\"relationName\":\"CertificationToOrganization\"},{\"name\":\"organizationId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"type\",\"kind\":\"enum\",\"type\":\"CetificationType\"},{\"name\":\"isProfessional\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"users\",\"kind\":\"object\",\"type\":\"UserCertification\",\"relationName\":\"CertificationToUserCertification\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Club\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Shop\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"type\",\"kind\":\"enum\",\"type\":\"ShopType\"},{\"name\":\"shopNo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"instructedCerts\",\"kind\":\"object\",\"type\":\"UserCertification\",\"relationName\":\"InstructedCerts\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"type\",\"kind\":\"enum\",\"type\":\"UserType\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"object\",\"type\":\"Password\",\"relationName\":\"PasswordToUser\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"birth\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"address\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"gender\",\"kind\":\"enum\",\"type\":\"Gender\"},{\"name\":\"isActive\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"issuedCerts\",\"kind\":\"object\",\"type\":\"UserCertification\",\"relationName\":\"IssuedCerts\"},{\"name\":\"ownedCerts\",\"kind\":\"object\",\"type\":\"UserCertification\",\"relationName\":\"OwnedCerts\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"UserCertification\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"certNo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"certDate\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"OwnedCerts\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"cert\",\"kind\":\"object\",\"type\":\"Certification\",\"relationName\":\"CertificationToUserCertification\"},{\"name\":\"certId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"instructor\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"IssuedCerts\"},{\"name\":\"instructorId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"shop\",\"kind\":\"object\",\"type\":\"Shop\",\"relationName\":\"InstructedCerts\"},{\"name\":\"shopId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Password\":{\"fields\":[{\"name\":\"hash\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"User\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"PasswordToUser\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -58,8 +58,8 @@ export interface PrismaClientConstructor {
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Users
-   * const users = await prisma.user.findMany()
+   * // Fetch zero or more Organizations
+   * const organizations = await prisma.organization.findMany()
    * ```
    * 
    * Read more in our [docs](https://pris.ly/d/client).
@@ -80,8 +80,8 @@ export interface PrismaClientConstructor {
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more Organizations
+ * const organizations = await prisma.organization.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -175,6 +175,46 @@ export interface PrismaClient<
   }>>
 
       /**
+   * `prisma.organization`: Exposes CRUD operations for the **Organization** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Organizations
+    * const organizations = await prisma.organization.findMany()
+    * ```
+    */
+  get organization(): Prisma.OrganizationDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.certification`: Exposes CRUD operations for the **Certification** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Certifications
+    * const certifications = await prisma.certification.findMany()
+    * ```
+    */
+  get certification(): Prisma.CertificationDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.club`: Exposes CRUD operations for the **Club** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Clubs
+    * const clubs = await prisma.club.findMany()
+    * ```
+    */
+  get club(): Prisma.ClubDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.shop`: Exposes CRUD operations for the **Shop** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Shops
+    * const shops = await prisma.shop.findMany()
+    * ```
+    */
+  get shop(): Prisma.ShopDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
     * Example usage:
     * ```ts
@@ -183,6 +223,26 @@ export interface PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.userCertification`: Exposes CRUD operations for the **UserCertification** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserCertifications
+    * const userCertifications = await prisma.userCertification.findMany()
+    * ```
+    */
+  get userCertification(): Prisma.UserCertificationDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.password`: Exposes CRUD operations for the **Password** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Passwords
+    * const passwords = await prisma.password.findMany()
+    * ```
+    */
+  get password(): Prisma.PasswordDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {

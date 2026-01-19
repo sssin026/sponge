@@ -1,0 +1,20 @@
+enum ShopType {
+  DIVE_SHOP // 다이브샵
+  DIVE_CENTER // 다이브센터
+}
+
+model Shop {
+  id              Int                 @id @default(autoincrement())
+  type            ShopType            @default(DIVE_SHOP) // 샵 종류
+  shopNo          String              @unique // 고유번호
+  name            String
+  address         String?
+  phone           String?
+  website         String?
+  description     String?
+  // --------------------------------------------------------
+  instructedCerts UserCertification[] @relation("InstructedCerts")
+  // --------------------------------------------------------
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+}

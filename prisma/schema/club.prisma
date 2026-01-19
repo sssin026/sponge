@@ -1,0 +1,9 @@
+model Club {
+  id        Int      @id @default(autoincrement())
+  name      String // 동호회 이름
+  logoImg   String? // 동호회 로고 이미지
+  members   User[] // 동호회 회원
+  // --------------------------------------------------------
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

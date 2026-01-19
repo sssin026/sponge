@@ -51,7 +51,13 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  User: 'User'
+  Organization: 'Organization',
+  Certification: 'Certification',
+  Club: 'Club',
+  Shop: 'Shop',
+  User: 'User',
+  UserCertification: 'UserCertification',
+  Password: 'Password'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -70,14 +76,97 @@ export const TransactionIsolationLevel = {
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const OrganizationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  address: 'address',
+  phone: 'phone',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OrganizationScalarFieldEnum = (typeof OrganizationScalarFieldEnum)[keyof typeof OrganizationScalarFieldEnum]
+
+
+export const CertificationScalarFieldEnum = {
+  id: 'id',
+  discipline: 'discipline',
+  organizationId: 'organizationId',
+  type: 'type',
+  isProfessional: 'isProfessional',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CertificationScalarFieldEnum = (typeof CertificationScalarFieldEnum)[keyof typeof CertificationScalarFieldEnum]
+
+
+export const ClubScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  address: 'address',
+  phone: 'phone',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ClubScalarFieldEnum = (typeof ClubScalarFieldEnum)[keyof typeof ClubScalarFieldEnum]
+
+
+export const ShopScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  shopNo: 'shopNo',
+  name: 'name',
+  address: 'address',
+  phone: 'phone',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ShopScalarFieldEnum = (typeof ShopScalarFieldEnum)[keyof typeof ShopScalarFieldEnum]
+
+
 export const UserScalarFieldEnum = {
   id: 'id',
+  type: 'type',
   email: 'email',
   name: 'name',
-  isAdmin: 'isAdmin'
+  phone: 'phone',
+  birth: 'birth',
+  address: 'address',
+  gender: 'gender',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const UserCertificationScalarFieldEnum = {
+  id: 'id',
+  certNo: 'certNo',
+  certDate: 'certDate',
+  userId: 'userId',
+  certId: 'certId',
+  instructorId: 'instructorId',
+  shopId: 'shopId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UserCertificationScalarFieldEnum = (typeof UserCertificationScalarFieldEnum)[keyof typeof UserCertificationScalarFieldEnum]
+
+
+export const PasswordScalarFieldEnum = {
+  hash: 'hash',
+  email: 'email'
+} as const
+
+export type PasswordScalarFieldEnum = (typeof PasswordScalarFieldEnum)[keyof typeof PasswordScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -94,4 +183,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

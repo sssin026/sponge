@@ -9,7 +9,47 @@
 * 🟢 You can import this file directly.
 */
 
+export const Discipline = {
+  SCUBA: 'SCUBA',
+  FREE_DIVING: 'FREE_DIVING'
+} as const
+
+export type Discipline = (typeof Discipline)[keyof typeof Discipline]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const CetificationType = {
+  OPEN_WATER_DIVER: 'OPEN_WATER_DIVER',
+  ADVANCED_OPEN_WATER_DIVER: 'ADVANCED_OPEN_WATER_DIVER',
+  RESCUE_DIVER: 'RESCUE_DIVER',
+  DIVE_MASTER: 'DIVE_MASTER',
+  INSTRUCTOR: 'INSTRUCTOR',
+  TRAINER: 'TRAINER',
+  SPECIALTY: 'SPECIALTY'
+} as const
+
+export type CetificationType = (typeof CetificationType)[keyof typeof CetificationType]
+
+
+export const ShopType = {
+  DIVE_SHOP: 'DIVE_SHOP',
+  DIVE_CENTER: 'DIVE_CENTER'
+} as const
+
+export type ShopType = (typeof ShopType)[keyof typeof ShopType]
+
+
+export const UserType = {
+  NORMAL: 'NORMAL',
+  CERTIFIED: 'CERTIFIED',
+  INSTRUCTOR: 'INSTRUCTOR'
+} as const
+
+export type UserType = (typeof UserType)[keyof typeof UserType]
+
+
+export const Gender = {
+  MALE: 'MALE',
+  FEMALE: 'FEMALE'
+} as const
+
+export type Gender = (typeof Gender)[keyof typeof Gender]
