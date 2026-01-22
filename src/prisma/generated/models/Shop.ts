@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model Shop
@@ -41,6 +41,8 @@ export type ShopMinAggregateOutputType = {
   name: string | null
   address: string | null
   phone: string | null
+  website: string | null
+  description: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -52,6 +54,8 @@ export type ShopMaxAggregateOutputType = {
   name: string | null
   address: string | null
   phone: string | null
+  website: string | null
+  description: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -63,6 +67,8 @@ export type ShopCountAggregateOutputType = {
   name: number
   address: number
   phone: number
+  website: number
+  description: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -84,6 +90,8 @@ export type ShopMinAggregateInputType = {
   name?: true
   address?: true
   phone?: true
+  website?: true
+  description?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -95,6 +103,8 @@ export type ShopMaxAggregateInputType = {
   name?: true
   address?: true
   phone?: true
+  website?: true
+  description?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -106,6 +116,8 @@ export type ShopCountAggregateInputType = {
   name?: true
   address?: true
   phone?: true
+  website?: true
+  description?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -202,8 +214,10 @@ export type ShopGroupByOutputType = {
   type: $Enums.ShopType
   shopNo: string
   name: string
-  address: string
-  phone: string
+  address: string | null
+  phone: string | null
+  website: string | null
+  description: string | null
   createdAt: Date
   updatedAt: Date
   _count: ShopCountAggregateOutputType | null
@@ -236,11 +250,13 @@ export type ShopWhereInput = {
   type?: Prisma.EnumShopTypeFilter<"Shop"> | $Enums.ShopType
   shopNo?: Prisma.StringFilter<"Shop"> | string
   name?: Prisma.StringFilter<"Shop"> | string
-  address?: Prisma.StringFilter<"Shop"> | string
-  phone?: Prisma.StringFilter<"Shop"> | string
+  address?: Prisma.StringNullableFilter<"Shop"> | string | null
+  phone?: Prisma.StringNullableFilter<"Shop"> | string | null
+  website?: Prisma.StringNullableFilter<"Shop"> | string | null
+  description?: Prisma.StringNullableFilter<"Shop"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Shop"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Shop"> | Date | string
-  instructedCerts?: Prisma.UserCertificationListRelationFilter
+  instructedCerts?: Prisma.UserCertListRelationFilter
 }
 
 export type ShopOrderByWithRelationInput = {
@@ -248,11 +264,13 @@ export type ShopOrderByWithRelationInput = {
   type?: Prisma.SortOrder
   shopNo?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  address?: Prisma.SortOrder
-  phone?: Prisma.SortOrder
+  address?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  website?: Prisma.SortOrderInput | Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  instructedCerts?: Prisma.UserCertificationOrderByRelationAggregateInput
+  instructedCerts?: Prisma.UserCertOrderByRelationAggregateInput
 }
 
 export type ShopWhereUniqueInput = Prisma.AtLeast<{
@@ -263,11 +281,13 @@ export type ShopWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ShopWhereInput | Prisma.ShopWhereInput[]
   type?: Prisma.EnumShopTypeFilter<"Shop"> | $Enums.ShopType
   name?: Prisma.StringFilter<"Shop"> | string
-  address?: Prisma.StringFilter<"Shop"> | string
-  phone?: Prisma.StringFilter<"Shop"> | string
+  address?: Prisma.StringNullableFilter<"Shop"> | string | null
+  phone?: Prisma.StringNullableFilter<"Shop"> | string | null
+  website?: Prisma.StringNullableFilter<"Shop"> | string | null
+  description?: Prisma.StringNullableFilter<"Shop"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Shop"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Shop"> | Date | string
-  instructedCerts?: Prisma.UserCertificationListRelationFilter
+  instructedCerts?: Prisma.UserCertListRelationFilter
 }, "id" | "shopNo">
 
 export type ShopOrderByWithAggregationInput = {
@@ -275,8 +295,10 @@ export type ShopOrderByWithAggregationInput = {
   type?: Prisma.SortOrder
   shopNo?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  address?: Prisma.SortOrder
-  phone?: Prisma.SortOrder
+  address?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  website?: Prisma.SortOrderInput | Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ShopCountOrderByAggregateInput
@@ -294,8 +316,10 @@ export type ShopScalarWhereWithAggregatesInput = {
   type?: Prisma.EnumShopTypeWithAggregatesFilter<"Shop"> | $Enums.ShopType
   shopNo?: Prisma.StringWithAggregatesFilter<"Shop"> | string
   name?: Prisma.StringWithAggregatesFilter<"Shop"> | string
-  address?: Prisma.StringWithAggregatesFilter<"Shop"> | string
-  phone?: Prisma.StringWithAggregatesFilter<"Shop"> | string
+  address?: Prisma.StringNullableWithAggregatesFilter<"Shop"> | string | null
+  phone?: Prisma.StringNullableWithAggregatesFilter<"Shop"> | string | null
+  website?: Prisma.StringNullableWithAggregatesFilter<"Shop"> | string | null
+  description?: Prisma.StringNullableWithAggregatesFilter<"Shop"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Shop"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Shop"> | Date | string
 }
@@ -304,11 +328,13 @@ export type ShopCreateInput = {
   type?: $Enums.ShopType
   shopNo: string
   name: string
-  address: string
-  phone: string
+  address?: string | null
+  phone?: string | null
+  website?: string | null
+  description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  instructedCerts?: Prisma.UserCertificationCreateNestedManyWithoutShopInput
+  instructedCerts?: Prisma.UserCertCreateNestedManyWithoutShopInput
 }
 
 export type ShopUncheckedCreateInput = {
@@ -316,22 +342,26 @@ export type ShopUncheckedCreateInput = {
   type?: $Enums.ShopType
   shopNo: string
   name: string
-  address: string
-  phone: string
+  address?: string | null
+  phone?: string | null
+  website?: string | null
+  description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  instructedCerts?: Prisma.UserCertificationUncheckedCreateNestedManyWithoutShopInput
+  instructedCerts?: Prisma.UserCertUncheckedCreateNestedManyWithoutShopInput
 }
 
 export type ShopUpdateInput = {
   type?: Prisma.EnumShopTypeFieldUpdateOperationsInput | $Enums.ShopType
   shopNo?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  instructedCerts?: Prisma.UserCertificationUpdateManyWithoutShopNestedInput
+  instructedCerts?: Prisma.UserCertUpdateManyWithoutShopNestedInput
 }
 
 export type ShopUncheckedUpdateInput = {
@@ -339,11 +369,13 @@ export type ShopUncheckedUpdateInput = {
   type?: Prisma.EnumShopTypeFieldUpdateOperationsInput | $Enums.ShopType
   shopNo?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  instructedCerts?: Prisma.UserCertificationUncheckedUpdateManyWithoutShopNestedInput
+  instructedCerts?: Prisma.UserCertUncheckedUpdateManyWithoutShopNestedInput
 }
 
 export type ShopCreateManyInput = {
@@ -351,8 +383,10 @@ export type ShopCreateManyInput = {
   type?: $Enums.ShopType
   shopNo: string
   name: string
-  address: string
-  phone: string
+  address?: string | null
+  phone?: string | null
+  website?: string | null
+  description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -361,8 +395,10 @@ export type ShopUpdateManyMutationInput = {
   type?: Prisma.EnumShopTypeFieldUpdateOperationsInput | $Enums.ShopType
   shopNo?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -372,8 +408,10 @@ export type ShopUncheckedUpdateManyInput = {
   type?: Prisma.EnumShopTypeFieldUpdateOperationsInput | $Enums.ShopType
   shopNo?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -385,6 +423,8 @@ export type ShopCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   address?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  website?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -400,6 +440,8 @@ export type ShopMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   address?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  website?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -411,6 +453,8 @@ export type ShopMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   address?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  website?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -448,8 +492,10 @@ export type ShopCreateWithoutInstructedCertsInput = {
   type?: $Enums.ShopType
   shopNo: string
   name: string
-  address: string
-  phone: string
+  address?: string | null
+  phone?: string | null
+  website?: string | null
+  description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -459,8 +505,10 @@ export type ShopUncheckedCreateWithoutInstructedCertsInput = {
   type?: $Enums.ShopType
   shopNo: string
   name: string
-  address: string
-  phone: string
+  address?: string | null
+  phone?: string | null
+  website?: string | null
+  description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -485,8 +533,10 @@ export type ShopUpdateWithoutInstructedCertsInput = {
   type?: Prisma.EnumShopTypeFieldUpdateOperationsInput | $Enums.ShopType
   shopNo?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -496,8 +546,10 @@ export type ShopUncheckedUpdateWithoutInstructedCertsInput = {
   type?: Prisma.EnumShopTypeFieldUpdateOperationsInput | $Enums.ShopType
   shopNo?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -529,7 +581,7 @@ export type ShopCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
  * ShopCountOutputType without action
  */
 export type ShopCountOutputTypeCountInstructedCertsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserCertificationWhereInput
+  where?: Prisma.UserCertWhereInput
 }
 
 
@@ -540,6 +592,8 @@ export type ShopSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   name?: boolean
   address?: boolean
   phone?: boolean
+  website?: boolean
+  description?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   instructedCerts?: boolean | Prisma.Shop$instructedCertsArgs<ExtArgs>
@@ -553,6 +607,8 @@ export type ShopSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   address?: boolean
   phone?: boolean
+  website?: boolean
+  description?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["shop"]>
@@ -564,6 +620,8 @@ export type ShopSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   address?: boolean
   phone?: boolean
+  website?: boolean
+  description?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["shop"]>
@@ -575,11 +633,13 @@ export type ShopSelectScalar = {
   name?: boolean
   address?: boolean
   phone?: boolean
+  website?: boolean
+  description?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ShopOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "shopNo" | "name" | "address" | "phone" | "createdAt" | "updatedAt", ExtArgs["result"]["shop"]>
+export type ShopOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "shopNo" | "name" | "address" | "phone" | "website" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["shop"]>
 export type ShopInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   instructedCerts?: boolean | Prisma.Shop$instructedCertsArgs<ExtArgs>
   _count?: boolean | Prisma.ShopCountOutputTypeDefaultArgs<ExtArgs>
@@ -590,15 +650,17 @@ export type ShopIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $ShopPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Shop"
   objects: {
-    instructedCerts: Prisma.$UserCertificationPayload<ExtArgs>[]
+    instructedCerts: Prisma.$UserCertPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     type: $Enums.ShopType
     shopNo: string
     name: string
-    address: string
-    phone: string
+    address: string | null
+    phone: string | null
+    website: string | null
+    description: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["shop"]>
@@ -995,7 +1057,7 @@ readonly fields: ShopFieldRefs;
  */
 export interface Prisma__ShopClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  instructedCerts<T extends Prisma.Shop$instructedCertsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Shop$instructedCertsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserCertificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  instructedCerts<T extends Prisma.Shop$instructedCertsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Shop$instructedCertsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserCertPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1031,6 +1093,8 @@ export interface ShopFieldRefs {
   readonly name: Prisma.FieldRef<"Shop", 'String'>
   readonly address: Prisma.FieldRef<"Shop", 'String'>
   readonly phone: Prisma.FieldRef<"Shop", 'String'>
+  readonly website: Prisma.FieldRef<"Shop", 'String'>
+  readonly description: Prisma.FieldRef<"Shop", 'String'>
   readonly createdAt: Prisma.FieldRef<"Shop", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Shop", 'DateTime'>
 }
@@ -1425,23 +1489,23 @@ export type ShopDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
  */
 export type Shop$instructedCertsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the UserCertification
+   * Select specific fields to fetch from the UserCert
    */
-  select?: Prisma.UserCertificationSelect<ExtArgs> | null
+  select?: Prisma.UserCertSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the UserCertification
+   * Omit specific fields from the UserCert
    */
-  omit?: Prisma.UserCertificationOmit<ExtArgs> | null
+  omit?: Prisma.UserCertOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserCertificationInclude<ExtArgs> | null
-  where?: Prisma.UserCertificationWhereInput
-  orderBy?: Prisma.UserCertificationOrderByWithRelationInput | Prisma.UserCertificationOrderByWithRelationInput[]
-  cursor?: Prisma.UserCertificationWhereUniqueInput
+  include?: Prisma.UserCertInclude<ExtArgs> | null
+  where?: Prisma.UserCertWhereInput
+  orderBy?: Prisma.UserCertOrderByWithRelationInput | Prisma.UserCertOrderByWithRelationInput[]
+  cursor?: Prisma.UserCertWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.UserCertificationScalarFieldEnum | Prisma.UserCertificationScalarFieldEnum[]
+  distinct?: Prisma.UserCertScalarFieldEnum | Prisma.UserCertScalarFieldEnum[]
 }
 
 /**

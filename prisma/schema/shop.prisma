@@ -4,17 +4,17 @@ enum ShopType {
 }
 
 model Shop {
-  id              Int                 @id @default(autoincrement())
-  type            ShopType            @default(DIVE_SHOP) // 샵 종류
-  shopNo          String              @unique // 고유번호
-  name            String
-  address         String?
-  phone           String?
-  website         String?
-  description     String?
+  id              Int        @id @default(autoincrement())
+  type            ShopType   @default(DIVE_SHOP) // 샵 종류
+  shopNo          String     @unique // 고유번호
+  name            String // 샵 이름
+  address         String? // 주소
+  phone           String? // 전화번호
+  website         String? // 웹사이트
+  description     String? // 설명
   // --------------------------------------------------------
-  instructedCerts UserCertification[] @relation("InstructedCerts")
+  instructedCerts UserCert[] @relation("InstructedCerts")
   // --------------------------------------------------------
-  createdAt       DateTime            @default(now())
-  updatedAt       DateTime            @updatedAt
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
 }

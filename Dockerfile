@@ -35,4 +35,6 @@ COPY --from=builder /sponge/dist ./dist
 # Copy custom prisma output
 # COPY --from=builder /app/src/prisma/generated ./src/prisma/generated
 
+EXPOSE ${PORT}
+
 CMD ["node", "dist/main"]

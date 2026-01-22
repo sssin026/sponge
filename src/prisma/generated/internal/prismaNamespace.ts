@@ -16,10 +16,10 @@
  */
 
 import * as runtime from "@prisma/client/runtime/client"
-import type * as Prisma from "../models.js"
-import { type PrismaClient } from "./class.js"
+import type * as Prisma from "../models"
+import { type PrismaClient } from "./class"
 
-export type * from '../models.js'
+export type * from '../models'
 
 export type DMMF = typeof runtime.DMMF
 
@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.2.0
- * Query Engine version: 0c8ef2ce45c83248ab3df073180d5eda9e8be7a3
+ * Prisma Client JS version: 7.3.0
+ * Query Engine version: 9d6ad21cbbceab97458517b147a6a09ff43aa735
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.2.0",
-  engine: "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3"
+  client: "7.3.0",
+  engine: "9d6ad21cbbceab97458517b147a6a09ff43aa735"
 }
 
 /**
@@ -389,8 +389,9 @@ export const ModelName = {
   Club: 'Club',
   Shop: 'Shop',
   User: 'User',
-  UserCertification: 'UserCertification',
-  Password: 'Password'
+  UserInfo: 'UserInfo',
+  Password: 'Password',
+  UserCert: 'UserCert'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -406,7 +407,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "organization" | "certification" | "club" | "shop" | "user" | "userCertification" | "password"
+    modelProps: "organization" | "certification" | "club" | "shop" | "user" | "userInfo" | "password" | "userCert"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -780,77 +781,77 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    UserCertification: {
-      payload: Prisma.$UserCertificationPayload<ExtArgs>
-      fields: Prisma.UserCertificationFieldRefs
+    UserInfo: {
+      payload: Prisma.$UserInfoPayload<ExtArgs>
+      fields: Prisma.UserInfoFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.UserCertificationFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertificationPayload> | null
+          args: Prisma.UserInfoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInfoPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.UserCertificationFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertificationPayload>
+          args: Prisma.UserInfoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInfoPayload>
         }
         findFirst: {
-          args: Prisma.UserCertificationFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertificationPayload> | null
+          args: Prisma.UserInfoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInfoPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.UserCertificationFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertificationPayload>
+          args: Prisma.UserInfoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInfoPayload>
         }
         findMany: {
-          args: Prisma.UserCertificationFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertificationPayload>[]
+          args: Prisma.UserInfoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInfoPayload>[]
         }
         create: {
-          args: Prisma.UserCertificationCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertificationPayload>
+          args: Prisma.UserInfoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInfoPayload>
         }
         createMany: {
-          args: Prisma.UserCertificationCreateManyArgs<ExtArgs>
+          args: Prisma.UserInfoCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.UserCertificationCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertificationPayload>[]
+          args: Prisma.UserInfoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInfoPayload>[]
         }
         delete: {
-          args: Prisma.UserCertificationDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertificationPayload>
+          args: Prisma.UserInfoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInfoPayload>
         }
         update: {
-          args: Prisma.UserCertificationUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertificationPayload>
+          args: Prisma.UserInfoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInfoPayload>
         }
         deleteMany: {
-          args: Prisma.UserCertificationDeleteManyArgs<ExtArgs>
+          args: Prisma.UserInfoDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.UserCertificationUpdateManyArgs<ExtArgs>
+          args: Prisma.UserInfoUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.UserCertificationUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertificationPayload>[]
+          args: Prisma.UserInfoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInfoPayload>[]
         }
         upsert: {
-          args: Prisma.UserCertificationUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertificationPayload>
+          args: Prisma.UserInfoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserInfoPayload>
         }
         aggregate: {
-          args: Prisma.UserCertificationAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateUserCertification>
+          args: Prisma.UserInfoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserInfo>
         }
         groupBy: {
-          args: Prisma.UserCertificationGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.UserCertificationGroupByOutputType>[]
+          args: Prisma.UserInfoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserInfoGroupByOutputType>[]
         }
         count: {
-          args: Prisma.UserCertificationCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.UserCertificationCountAggregateOutputType> | number
+          args: Prisma.UserInfoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserInfoCountAggregateOutputType> | number
         }
       }
     }
@@ -928,6 +929,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    UserCert: {
+      payload: Prisma.$UserCertPayload<ExtArgs>
+      fields: Prisma.UserCertFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UserCertFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UserCertFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertPayload>
+        }
+        findFirst: {
+          args: Prisma.UserCertFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UserCertFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertPayload>
+        }
+        findMany: {
+          args: Prisma.UserCertFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertPayload>[]
+        }
+        create: {
+          args: Prisma.UserCertCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertPayload>
+        }
+        createMany: {
+          args: Prisma.UserCertCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UserCertCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertPayload>[]
+        }
+        delete: {
+          args: Prisma.UserCertDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertPayload>
+        }
+        update: {
+          args: Prisma.UserCertUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertPayload>
+        }
+        deleteMany: {
+          args: Prisma.UserCertDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UserCertUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UserCertUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertPayload>[]
+        }
+        upsert: {
+          args: Prisma.UserCertUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserCertPayload>
+        }
+        aggregate: {
+          args: Prisma.UserCertAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserCert>
+        }
+        groupBy: {
+          args: Prisma.UserCertGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserCertGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UserCertCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserCertCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -970,8 +1045,6 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const OrganizationScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  address: 'address',
-  phone: 'phone',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -997,8 +1070,7 @@ export type CertificationScalarFieldEnum = (typeof CertificationScalarFieldEnum)
 export const ClubScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  address: 'address',
-  phone: 'phone',
+  logoImg: 'logoImg',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1013,6 +1085,8 @@ export const ShopScalarFieldEnum = {
   name: 'name',
   address: 'address',
   phone: 'phone',
+  website: 'website',
+  description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1025,10 +1099,7 @@ export const UserScalarFieldEnum = {
   type: 'type',
   email: 'email',
   name: 'name',
-  phone: 'phone',
-  birth: 'birth',
-  address: 'address',
-  gender: 'gender',
+  isEmailVerified: 'isEmailVerified',
   isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -1037,9 +1108,30 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const UserCertificationScalarFieldEnum = {
+export const UserInfoScalarFieldEnum = {
+  email: 'email',
+  profileImg: 'profileImg',
+  phone: 'phone',
+  birth: 'birth',
+  address: 'address',
+  gender: 'gender'
+} as const
+
+export type UserInfoScalarFieldEnum = (typeof UserInfoScalarFieldEnum)[keyof typeof UserInfoScalarFieldEnum]
+
+
+export const PasswordScalarFieldEnum = {
+  email: 'email',
+  hash: 'hash'
+} as const
+
+export type PasswordScalarFieldEnum = (typeof PasswordScalarFieldEnum)[keyof typeof PasswordScalarFieldEnum]
+
+
+export const UserCertScalarFieldEnum = {
   id: 'id',
   certNo: 'certNo',
+  name: 'name',
   certDate: 'certDate',
   userId: 'userId',
   certId: 'certId',
@@ -1049,15 +1141,7 @@ export const UserCertificationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 } as const
 
-export type UserCertificationScalarFieldEnum = (typeof UserCertificationScalarFieldEnum)[keyof typeof UserCertificationScalarFieldEnum]
-
-
-export const PasswordScalarFieldEnum = {
-  hash: 'hash',
-  email: 'email'
-} as const
-
-export type PasswordScalarFieldEnum = (typeof PasswordScalarFieldEnum)[keyof typeof PasswordScalarFieldEnum]
+export type UserCertScalarFieldEnum = (typeof UserCertScalarFieldEnum)[keyof typeof UserCertScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1147,16 +1231,16 @@ export type ListEnumDisciplineFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 
 
 /**
- * Reference to a field of type 'CetificationType'
+ * Reference to a field of type 'CertType'
  */
-export type EnumCetificationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CetificationType'>
+export type EnumCertTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CertType'>
     
 
 
 /**
- * Reference to a field of type 'CetificationType[]'
+ * Reference to a field of type 'CertType[]'
  */
-export type ListEnumCetificationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CetificationType[]'>
+export type ListEnumCertTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CertType[]'>
     
 
 
@@ -1322,8 +1406,9 @@ export type GlobalOmitConfig = {
   club?: Prisma.ClubOmit
   shop?: Prisma.ShopOmit
   user?: Prisma.UserOmit
-  userCertification?: Prisma.UserCertificationOmit
+  userInfo?: Prisma.UserInfoOmit
   password?: Prisma.PasswordOmit
+  userCert?: Prisma.UserCertOmit
 }
 
 /* Types for Logging */

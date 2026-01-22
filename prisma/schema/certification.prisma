@@ -3,7 +3,7 @@ enum Discipline {
   FREE_DIVING // 프리다이빙
 }
 
-enum CetificationType {
+enum CertType {
   OPEN_WATER_DIVER // 레벨1
   ADVANCED_OPEN_WATER_DIVER // 레벨2
   RESCUE_DIVER // 레벨3
@@ -15,27 +15,25 @@ enum CetificationType {
 
 model Organization {
   id        Int             @id @default(autoincrement())
-  name      String
-  address   String
-  phone     String
-  certs     Certification[]
+  name      String // 단체명
+  certs     Certification[] // 자격증
   // --------------------------------------------------------
   createdAt DateTime        @default(now())
   updatedAt DateTime        @updatedAt
 }
 
 model Certification {
-  id             Int                 @id @default(autoincrement())
-  discipline     Discipline          @default(SCUBA) // 종목
-  organization   Organization        @relation(fields: [organizationId], references: [id]) // 발급 기관 
+  id             Int          @id @default(autoincrement())
+  discipline     Discipline   @default(SCUBA) // 종목
+  organization   Organization @relation(fields: [organizationId], references: [id]) // 발급 기관 
   organizationId Int
-  type           CetificationType // 자격증 종류
-  isProfessional Boolean             @default(false) // 프로 자격증 여부
+  type           CertType // 자격증 종류
+  isProfessional Boolean      @default(false) // 프로 자격증 여부
   name           String // 자격증 이름
   description    String? // 자격증 설명
   // --------------------------------------------------------
-  users          UserCertification[]
+  users          UserCert[] // 보유자
   // --------------------------------------------------------
-  createdAt      DateTime            @default(now())
-  updatedAt      DateTime            @updatedAt
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
 }

@@ -17,7 +17,7 @@ export const Discipline = {
 export type Discipline = (typeof Discipline)[keyof typeof Discipline]
 
 
-export const CetificationType = {
+export const CertType = {
   OPEN_WATER_DIVER: 'OPEN_WATER_DIVER',
   ADVANCED_OPEN_WATER_DIVER: 'ADVANCED_OPEN_WATER_DIVER',
   RESCUE_DIVER: 'RESCUE_DIVER',
@@ -27,7 +27,7 @@ export const CetificationType = {
   SPECIALTY: 'SPECIALTY'
 } as const
 
-export type CetificationType = (typeof CetificationType)[keyof typeof CetificationType]
+export type CertType = (typeof CertType)[keyof typeof CertType]
 
 
 export const ShopType = {

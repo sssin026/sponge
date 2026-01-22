@@ -17,8 +17,8 @@
 
 import * as runtime from "@prisma/client/runtime/index-browser"
 
-export type * from '../models.js'
-export type * from './prismaNamespace.js'
+export type * from '../models'
+export type * from './prismaNamespace'
 
 export const Decimal = runtime.Decimal
 
@@ -56,8 +56,9 @@ export const ModelName = {
   Club: 'Club',
   Shop: 'Shop',
   User: 'User',
-  UserCertification: 'UserCertification',
-  Password: 'Password'
+  UserInfo: 'UserInfo',
+  Password: 'Password',
+  UserCert: 'UserCert'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -66,12 +67,12 @@ export type ModelName = (typeof ModelName)[keyof typeof ModelName]
  * Enums
  */
 
-export const TransactionIsolationLevel = {
+export const TransactionIsolationLevel = runtime.makeStrictEnum({
   ReadUncommitted: 'ReadUncommitted',
   ReadCommitted: 'ReadCommitted',
   RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
-} as const
+} as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
@@ -79,8 +80,6 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const OrganizationScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  address: 'address',
-  phone: 'phone',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -106,8 +105,7 @@ export type CertificationScalarFieldEnum = (typeof CertificationScalarFieldEnum)
 export const ClubScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  address: 'address',
-  phone: 'phone',
+  logoImg: 'logoImg',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -122,6 +120,8 @@ export const ShopScalarFieldEnum = {
   name: 'name',
   address: 'address',
   phone: 'phone',
+  website: 'website',
+  description: 'description',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -134,10 +134,7 @@ export const UserScalarFieldEnum = {
   type: 'type',
   email: 'email',
   name: 'name',
-  phone: 'phone',
-  birth: 'birth',
-  address: 'address',
-  gender: 'gender',
+  isEmailVerified: 'isEmailVerified',
   isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -146,9 +143,30 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const UserCertificationScalarFieldEnum = {
+export const UserInfoScalarFieldEnum = {
+  email: 'email',
+  profileImg: 'profileImg',
+  phone: 'phone',
+  birth: 'birth',
+  address: 'address',
+  gender: 'gender'
+} as const
+
+export type UserInfoScalarFieldEnum = (typeof UserInfoScalarFieldEnum)[keyof typeof UserInfoScalarFieldEnum]
+
+
+export const PasswordScalarFieldEnum = {
+  email: 'email',
+  hash: 'hash'
+} as const
+
+export type PasswordScalarFieldEnum = (typeof PasswordScalarFieldEnum)[keyof typeof PasswordScalarFieldEnum]
+
+
+export const UserCertScalarFieldEnum = {
   id: 'id',
   certNo: 'certNo',
+  name: 'name',
   certDate: 'certDate',
   userId: 'userId',
   certId: 'certId',
@@ -158,15 +176,7 @@ export const UserCertificationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 } as const
 
-export type UserCertificationScalarFieldEnum = (typeof UserCertificationScalarFieldEnum)[keyof typeof UserCertificationScalarFieldEnum]
-
-
-export const PasswordScalarFieldEnum = {
-  hash: 'hash',
-  email: 'email'
-} as const
-
-export type PasswordScalarFieldEnum = (typeof PasswordScalarFieldEnum)[keyof typeof PasswordScalarFieldEnum]
+export type UserCertScalarFieldEnum = (typeof UserCertScalarFieldEnum)[keyof typeof UserCertScalarFieldEnum]
 
 
 export const SortOrder = {

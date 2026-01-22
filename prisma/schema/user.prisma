@@ -10,28 +10,43 @@ enum Gender {
 }
 
 model User {
-  id          Int                 @id @default(autoincrement())
-  type        UserType            @default(NORMAL) // 사용자 종류
-  email       String              @unique // 이메일 (로그인 ID)
-  password    Password? // 비밀번호
-  name        String // 한글 이름
-  profileImg  String? // 프로필 이미지
-  phone       String? // 전화번호
-  birth       DateTime? // 생년월일
-  address     String? // 주소
-  gender      Gender? // 성별
-  isActive    Boolean             @default(true) // 활성 사용자 여부
+  id              Int        @id @default(autoincrement())
+  type            UserType   @default(NORMAL) // 사용자 종류
+  email           String     @unique // 이메일 (로그인 ID)
+  name            String // 한글 이름
+  password        Password? // 비밀번호
+  userInfo        UserInfo? // 사용자 정보
+  isEmailVerified Boolean    @default(false) // 이메일 인증 여부
+  isActive        Boolean    @default(true) // 활성 사용자 여부
   // --------------------------------------------------------
-  clubs       Club[] // 동호회
+  clubs           Club[] // 동호회
   // --------------------------------------------------------
-  issuedCerts UserCertification[] @relation("IssuedCerts") // 발급 자격증
-  ownedCerts  UserCertification[] @relation("OwnedCerts") // 보유 자격증
+  issuedCerts     UserCert[] @relation("IssuedCerts") // 발급 자격증
+  ownedCerts      UserCert[] @relation("OwnedCerts") // 보유 자격증
   // --------------------------------------------------------
-  createdAt   DateTime            @default(now()) // 생성일
-  updatedAt   DateTime            @updatedAt // 수정일
+  createdAt       DateTime   @default(now()) // 생성일
+  updatedAt       DateTime   @updatedAt // 수정일
 }
 
-model UserCertification {
+model UserInfo {
+  email      String    @id @unique
+  profileImg String? // 프로필 이미지
+  phone      String? // 전화번호
+  birth      DateTime? // 생년월일
+  address    String? // 주소
+  gender     Gender? // 성별
+  // --------------------------------------------------------
+  user       User      @relation(fields: [email], references: [email])
+}
+
+model Password {
+  email String @id @unique // 사용자 이메일
+  hash  String // 해시된 비밀번호
+  // --------------------------------------------------------
+  User  User   @relation(fields: [email], references: [email]) // 사용자 정보
+}
+
+model UserCert {
   id           Int           @id @default(autoincrement())
   certNo       String // 인증번호
   name         String // 취득자 이름
@@ -47,10 +62,4 @@ model UserCertification {
   // --------------------------------------------------------
   createdAt    DateTime      @default(now()) // 생성일
   updatedAt    DateTime      @updatedAt // 수정일
-}
-
-model Password {
-  hash  String // 해시된 비밀번호
-  User  User   @relation(fields: [email], references: [email]) // 사용자 정보
-  email String @unique // 사용자 이메일
 }

@@ -1,8 +1,13 @@
 import { Injectable } from '@nestjs/common';
+import dayjs from 'dayjs';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!';
+  getHealthCheck() {
+    return {
+      message: 'API가 정상적으로 작동합니다!',
+      timestamp: dayjs().toISOString(),
+      status: 'success',
+    };
   }
 }

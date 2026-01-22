@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model Certification
@@ -40,7 +40,7 @@ export type CertificationMinAggregateOutputType = {
   id: number | null
   discipline: $Enums.Discipline | null
   organizationId: number | null
-  type: $Enums.CetificationType | null
+  type: $Enums.CertType | null
   isProfessional: boolean | null
   name: string | null
   description: string | null
@@ -52,7 +52,7 @@ export type CertificationMaxAggregateOutputType = {
   id: number | null
   discipline: $Enums.Discipline | null
   organizationId: number | null
-  type: $Enums.CetificationType | null
+  type: $Enums.CertType | null
   isProfessional: boolean | null
   name: string | null
   description: string | null
@@ -211,7 +211,7 @@ export type CertificationGroupByOutputType = {
   id: number
   discipline: $Enums.Discipline
   organizationId: number
-  type: $Enums.CetificationType
+  type: $Enums.CertType
   isProfessional: boolean
   name: string
   description: string | null
@@ -246,14 +246,14 @@ export type CertificationWhereInput = {
   id?: Prisma.IntFilter<"Certification"> | number
   discipline?: Prisma.EnumDisciplineFilter<"Certification"> | $Enums.Discipline
   organizationId?: Prisma.IntFilter<"Certification"> | number
-  type?: Prisma.EnumCetificationTypeFilter<"Certification"> | $Enums.CetificationType
+  type?: Prisma.EnumCertTypeFilter<"Certification"> | $Enums.CertType
   isProfessional?: Prisma.BoolFilter<"Certification"> | boolean
   name?: Prisma.StringFilter<"Certification"> | string
   description?: Prisma.StringNullableFilter<"Certification"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Certification"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Certification"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
-  users?: Prisma.UserCertificationListRelationFilter
+  users?: Prisma.UserCertListRelationFilter
 }
 
 export type CertificationOrderByWithRelationInput = {
@@ -267,7 +267,7 @@ export type CertificationOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   organization?: Prisma.OrganizationOrderByWithRelationInput
-  users?: Prisma.UserCertificationOrderByRelationAggregateInput
+  users?: Prisma.UserCertOrderByRelationAggregateInput
 }
 
 export type CertificationWhereUniqueInput = Prisma.AtLeast<{
@@ -277,14 +277,14 @@ export type CertificationWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CertificationWhereInput | Prisma.CertificationWhereInput[]
   discipline?: Prisma.EnumDisciplineFilter<"Certification"> | $Enums.Discipline
   organizationId?: Prisma.IntFilter<"Certification"> | number
-  type?: Prisma.EnumCetificationTypeFilter<"Certification"> | $Enums.CetificationType
+  type?: Prisma.EnumCertTypeFilter<"Certification"> | $Enums.CertType
   isProfessional?: Prisma.BoolFilter<"Certification"> | boolean
   name?: Prisma.StringFilter<"Certification"> | string
   description?: Prisma.StringNullableFilter<"Certification"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Certification"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Certification"> | Date | string
   organization?: Prisma.XOR<Prisma.OrganizationScalarRelationFilter, Prisma.OrganizationWhereInput>
-  users?: Prisma.UserCertificationListRelationFilter
+  users?: Prisma.UserCertListRelationFilter
 }, "id">
 
 export type CertificationOrderByWithAggregationInput = {
@@ -311,7 +311,7 @@ export type CertificationScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Certification"> | number
   discipline?: Prisma.EnumDisciplineWithAggregatesFilter<"Certification"> | $Enums.Discipline
   organizationId?: Prisma.IntWithAggregatesFilter<"Certification"> | number
-  type?: Prisma.EnumCetificationTypeWithAggregatesFilter<"Certification"> | $Enums.CetificationType
+  type?: Prisma.EnumCertTypeWithAggregatesFilter<"Certification"> | $Enums.CertType
   isProfessional?: Prisma.BoolWithAggregatesFilter<"Certification"> | boolean
   name?: Prisma.StringWithAggregatesFilter<"Certification"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Certification"> | string | null
@@ -321,59 +321,59 @@ export type CertificationScalarWhereWithAggregatesInput = {
 
 export type CertificationCreateInput = {
   discipline?: $Enums.Discipline
-  type: $Enums.CetificationType
+  type: $Enums.CertType
   isProfessional?: boolean
   name: string
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   organization: Prisma.OrganizationCreateNestedOneWithoutCertsInput
-  users?: Prisma.UserCertificationCreateNestedManyWithoutCertInput
+  users?: Prisma.UserCertCreateNestedManyWithoutCertInput
 }
 
 export type CertificationUncheckedCreateInput = {
   id?: number
   discipline?: $Enums.Discipline
   organizationId: number
-  type: $Enums.CetificationType
+  type: $Enums.CertType
   isProfessional?: boolean
   name: string
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  users?: Prisma.UserCertificationUncheckedCreateNestedManyWithoutCertInput
+  users?: Prisma.UserCertUncheckedCreateNestedManyWithoutCertInput
 }
 
 export type CertificationUpdateInput = {
   discipline?: Prisma.EnumDisciplineFieldUpdateOperationsInput | $Enums.Discipline
-  type?: Prisma.EnumCetificationTypeFieldUpdateOperationsInput | $Enums.CetificationType
+  type?: Prisma.EnumCertTypeFieldUpdateOperationsInput | $Enums.CertType
   isProfessional?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   organization?: Prisma.OrganizationUpdateOneRequiredWithoutCertsNestedInput
-  users?: Prisma.UserCertificationUpdateManyWithoutCertNestedInput
+  users?: Prisma.UserCertUpdateManyWithoutCertNestedInput
 }
 
 export type CertificationUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   discipline?: Prisma.EnumDisciplineFieldUpdateOperationsInput | $Enums.Discipline
   organizationId?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumCetificationTypeFieldUpdateOperationsInput | $Enums.CetificationType
+  type?: Prisma.EnumCertTypeFieldUpdateOperationsInput | $Enums.CertType
   isProfessional?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserCertificationUncheckedUpdateManyWithoutCertNestedInput
+  users?: Prisma.UserCertUncheckedUpdateManyWithoutCertNestedInput
 }
 
 export type CertificationCreateManyInput = {
   id?: number
   discipline?: $Enums.Discipline
   organizationId: number
-  type: $Enums.CetificationType
+  type: $Enums.CertType
   isProfessional?: boolean
   name: string
   description?: string | null
@@ -383,7 +383,7 @@ export type CertificationCreateManyInput = {
 
 export type CertificationUpdateManyMutationInput = {
   discipline?: Prisma.EnumDisciplineFieldUpdateOperationsInput | $Enums.Discipline
-  type?: Prisma.EnumCetificationTypeFieldUpdateOperationsInput | $Enums.CetificationType
+  type?: Prisma.EnumCertTypeFieldUpdateOperationsInput | $Enums.CertType
   isProfessional?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -395,7 +395,7 @@ export type CertificationUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   discipline?: Prisma.EnumDisciplineFieldUpdateOperationsInput | $Enums.Discipline
   organizationId?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumCetificationTypeFieldUpdateOperationsInput | $Enums.CetificationType
+  type?: Prisma.EnumCertTypeFieldUpdateOperationsInput | $Enums.CertType
   isProfessional?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -510,8 +510,8 @@ export type EnumDisciplineFieldUpdateOperationsInput = {
   set?: $Enums.Discipline
 }
 
-export type EnumCetificationTypeFieldUpdateOperationsInput = {
-  set?: $Enums.CetificationType
+export type EnumCertTypeFieldUpdateOperationsInput = {
+  set?: $Enums.CertType
 }
 
 export type BoolFieldUpdateOperationsInput = {
@@ -538,25 +538,25 @@ export type CertificationUpdateOneRequiredWithoutUsersNestedInput = {
 
 export type CertificationCreateWithoutOrganizationInput = {
   discipline?: $Enums.Discipline
-  type: $Enums.CetificationType
+  type: $Enums.CertType
   isProfessional?: boolean
   name: string
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  users?: Prisma.UserCertificationCreateNestedManyWithoutCertInput
+  users?: Prisma.UserCertCreateNestedManyWithoutCertInput
 }
 
 export type CertificationUncheckedCreateWithoutOrganizationInput = {
   id?: number
   discipline?: $Enums.Discipline
-  type: $Enums.CetificationType
+  type: $Enums.CertType
   isProfessional?: boolean
   name: string
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  users?: Prisma.UserCertificationUncheckedCreateNestedManyWithoutCertInput
+  users?: Prisma.UserCertUncheckedCreateNestedManyWithoutCertInput
 }
 
 export type CertificationCreateOrConnectWithoutOrganizationInput = {
@@ -592,7 +592,7 @@ export type CertificationScalarWhereInput = {
   id?: Prisma.IntFilter<"Certification"> | number
   discipline?: Prisma.EnumDisciplineFilter<"Certification"> | $Enums.Discipline
   organizationId?: Prisma.IntFilter<"Certification"> | number
-  type?: Prisma.EnumCetificationTypeFilter<"Certification"> | $Enums.CetificationType
+  type?: Prisma.EnumCertTypeFilter<"Certification"> | $Enums.CertType
   isProfessional?: Prisma.BoolFilter<"Certification"> | boolean
   name?: Prisma.StringFilter<"Certification"> | string
   description?: Prisma.StringNullableFilter<"Certification"> | string | null
@@ -602,7 +602,7 @@ export type CertificationScalarWhereInput = {
 
 export type CertificationCreateWithoutUsersInput = {
   discipline?: $Enums.Discipline
-  type: $Enums.CetificationType
+  type: $Enums.CertType
   isProfessional?: boolean
   name: string
   description?: string | null
@@ -615,7 +615,7 @@ export type CertificationUncheckedCreateWithoutUsersInput = {
   id?: number
   discipline?: $Enums.Discipline
   organizationId: number
-  type: $Enums.CetificationType
+  type: $Enums.CertType
   isProfessional?: boolean
   name: string
   description?: string | null
@@ -641,7 +641,7 @@ export type CertificationUpdateToOneWithWhereWithoutUsersInput = {
 
 export type CertificationUpdateWithoutUsersInput = {
   discipline?: Prisma.EnumDisciplineFieldUpdateOperationsInput | $Enums.Discipline
-  type?: Prisma.EnumCetificationTypeFieldUpdateOperationsInput | $Enums.CetificationType
+  type?: Prisma.EnumCertTypeFieldUpdateOperationsInput | $Enums.CertType
   isProfessional?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -654,7 +654,7 @@ export type CertificationUncheckedUpdateWithoutUsersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   discipline?: Prisma.EnumDisciplineFieldUpdateOperationsInput | $Enums.Discipline
   organizationId?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumCetificationTypeFieldUpdateOperationsInput | $Enums.CetificationType
+  type?: Prisma.EnumCertTypeFieldUpdateOperationsInput | $Enums.CertType
   isProfessional?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -665,7 +665,7 @@ export type CertificationUncheckedUpdateWithoutUsersInput = {
 export type CertificationCreateManyOrganizationInput = {
   id?: number
   discipline?: $Enums.Discipline
-  type: $Enums.CetificationType
+  type: $Enums.CertType
   isProfessional?: boolean
   name: string
   description?: string | null
@@ -675,31 +675,31 @@ export type CertificationCreateManyOrganizationInput = {
 
 export type CertificationUpdateWithoutOrganizationInput = {
   discipline?: Prisma.EnumDisciplineFieldUpdateOperationsInput | $Enums.Discipline
-  type?: Prisma.EnumCetificationTypeFieldUpdateOperationsInput | $Enums.CetificationType
+  type?: Prisma.EnumCertTypeFieldUpdateOperationsInput | $Enums.CertType
   isProfessional?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserCertificationUpdateManyWithoutCertNestedInput
+  users?: Prisma.UserCertUpdateManyWithoutCertNestedInput
 }
 
 export type CertificationUncheckedUpdateWithoutOrganizationInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   discipline?: Prisma.EnumDisciplineFieldUpdateOperationsInput | $Enums.Discipline
-  type?: Prisma.EnumCetificationTypeFieldUpdateOperationsInput | $Enums.CetificationType
+  type?: Prisma.EnumCertTypeFieldUpdateOperationsInput | $Enums.CertType
   isProfessional?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserCertificationUncheckedUpdateManyWithoutCertNestedInput
+  users?: Prisma.UserCertUncheckedUpdateManyWithoutCertNestedInput
 }
 
 export type CertificationUncheckedUpdateManyWithoutOrganizationInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   discipline?: Prisma.EnumDisciplineFieldUpdateOperationsInput | $Enums.Discipline
-  type?: Prisma.EnumCetificationTypeFieldUpdateOperationsInput | $Enums.CetificationType
+  type?: Prisma.EnumCertTypeFieldUpdateOperationsInput | $Enums.CertType
   isProfessional?: Prisma.BoolFieldUpdateOperationsInput | boolean
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -734,7 +734,7 @@ export type CertificationCountOutputTypeDefaultArgs<ExtArgs extends runtime.Type
  * CertificationCountOutputType without action
  */
 export type CertificationCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserCertificationWhereInput
+  where?: Prisma.UserCertWhereInput
 }
 
 
@@ -808,13 +808,13 @@ export type $CertificationPayload<ExtArgs extends runtime.Types.Extensions.Inter
   name: "Certification"
   objects: {
     organization: Prisma.$OrganizationPayload<ExtArgs>
-    users: Prisma.$UserCertificationPayload<ExtArgs>[]
+    users: Prisma.$UserCertPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     discipline: $Enums.Discipline
     organizationId: number
-    type: $Enums.CetificationType
+    type: $Enums.CertType
     isProfessional: boolean
     name: string
     description: string | null
@@ -1215,7 +1215,7 @@ readonly fields: CertificationFieldRefs;
 export interface Prisma__CertificationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   organization<T extends Prisma.OrganizationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OrganizationDefaultArgs<ExtArgs>>): Prisma.Prisma__OrganizationClient<runtime.Types.Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  users<T extends Prisma.Certification$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Certification$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserCertificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  users<T extends Prisma.Certification$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Certification$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserCertPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1248,7 +1248,7 @@ export interface CertificationFieldRefs {
   readonly id: Prisma.FieldRef<"Certification", 'Int'>
   readonly discipline: Prisma.FieldRef<"Certification", 'Discipline'>
   readonly organizationId: Prisma.FieldRef<"Certification", 'Int'>
-  readonly type: Prisma.FieldRef<"Certification", 'CetificationType'>
+  readonly type: Prisma.FieldRef<"Certification", 'CertType'>
   readonly isProfessional: Prisma.FieldRef<"Certification", 'Boolean'>
   readonly name: Prisma.FieldRef<"Certification", 'String'>
   readonly description: Prisma.FieldRef<"Certification", 'String'>
@@ -1654,23 +1654,23 @@ export type CertificationDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
  */
 export type Certification$usersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the UserCertification
+   * Select specific fields to fetch from the UserCert
    */
-  select?: Prisma.UserCertificationSelect<ExtArgs> | null
+  select?: Prisma.UserCertSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the UserCertification
+   * Omit specific fields from the UserCert
    */
-  omit?: Prisma.UserCertificationOmit<ExtArgs> | null
+  omit?: Prisma.UserCertOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserCertificationInclude<ExtArgs> | null
-  where?: Prisma.UserCertificationWhereInput
-  orderBy?: Prisma.UserCertificationOrderByWithRelationInput | Prisma.UserCertificationOrderByWithRelationInput[]
-  cursor?: Prisma.UserCertificationWhereUniqueInput
+  include?: Prisma.UserCertInclude<ExtArgs> | null
+  where?: Prisma.UserCertWhereInput
+  orderBy?: Prisma.UserCertOrderByWithRelationInput | Prisma.UserCertOrderByWithRelationInput[]
+  cursor?: Prisma.UserCertWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.UserCertificationScalarFieldEnum | Prisma.UserCertificationScalarFieldEnum[]
+  distinct?: Prisma.UserCertScalarFieldEnum | Prisma.UserCertScalarFieldEnum[]
 }
 
 /**

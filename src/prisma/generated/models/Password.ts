@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.js"
-import type * as Prisma from "../internal/prismaNamespace.js"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model Password
@@ -25,35 +25,35 @@ export type AggregatePassword = {
 }
 
 export type PasswordMinAggregateOutputType = {
-  hash: string | null
   email: string | null
+  hash: string | null
 }
 
 export type PasswordMaxAggregateOutputType = {
-  hash: string | null
   email: string | null
+  hash: string | null
 }
 
 export type PasswordCountAggregateOutputType = {
-  hash: number
   email: number
+  hash: number
   _all: number
 }
 
 
 export type PasswordMinAggregateInputType = {
-  hash?: true
   email?: true
+  hash?: true
 }
 
 export type PasswordMaxAggregateInputType = {
-  hash?: true
   email?: true
+  hash?: true
 }
 
 export type PasswordCountAggregateInputType = {
-  hash?: true
   email?: true
+  hash?: true
   _all?: true
 }
 
@@ -130,8 +130,8 @@ export type PasswordGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 export type PasswordGroupByOutputType = {
-  hash: string
   email: string
+  hash: string
   _count: PasswordCountAggregateOutputType | null
   _min: PasswordMinAggregateOutputType | null
   _max: PasswordMaxAggregateOutputType | null
@@ -156,14 +156,14 @@ export type PasswordWhereInput = {
   AND?: Prisma.PasswordWhereInput | Prisma.PasswordWhereInput[]
   OR?: Prisma.PasswordWhereInput[]
   NOT?: Prisma.PasswordWhereInput | Prisma.PasswordWhereInput[]
-  hash?: Prisma.StringFilter<"Password"> | string
   email?: Prisma.StringFilter<"Password"> | string
+  hash?: Prisma.StringFilter<"Password"> | string
   User?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type PasswordOrderByWithRelationInput = {
-  hash?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  hash?: Prisma.SortOrder
   User?: Prisma.UserOrderByWithRelationInput
 }
 
@@ -174,11 +174,11 @@ export type PasswordWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.PasswordWhereInput | Prisma.PasswordWhereInput[]
   hash?: Prisma.StringFilter<"Password"> | string
   User?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-}, "email">
+}, "email" | "email">
 
 export type PasswordOrderByWithAggregationInput = {
-  hash?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  hash?: Prisma.SortOrder
   _count?: Prisma.PasswordCountOrderByAggregateInput
   _max?: Prisma.PasswordMaxOrderByAggregateInput
   _min?: Prisma.PasswordMinOrderByAggregateInput
@@ -188,8 +188,8 @@ export type PasswordScalarWhereWithAggregatesInput = {
   AND?: Prisma.PasswordScalarWhereWithAggregatesInput | Prisma.PasswordScalarWhereWithAggregatesInput[]
   OR?: Prisma.PasswordScalarWhereWithAggregatesInput[]
   NOT?: Prisma.PasswordScalarWhereWithAggregatesInput | Prisma.PasswordScalarWhereWithAggregatesInput[]
-  hash?: Prisma.StringWithAggregatesFilter<"Password"> | string
   email?: Prisma.StringWithAggregatesFilter<"Password"> | string
+  hash?: Prisma.StringWithAggregatesFilter<"Password"> | string
 }
 
 export type PasswordCreateInput = {
@@ -198,8 +198,8 @@ export type PasswordCreateInput = {
 }
 
 export type PasswordUncheckedCreateInput = {
-  hash: string
   email: string
+  hash: string
 }
 
 export type PasswordUpdateInput = {
@@ -208,13 +208,13 @@ export type PasswordUpdateInput = {
 }
 
 export type PasswordUncheckedUpdateInput = {
-  hash?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  hash?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PasswordCreateManyInput = {
-  hash: string
   email: string
+  hash: string
 }
 
 export type PasswordUpdateManyMutationInput = {
@@ -222,8 +222,8 @@ export type PasswordUpdateManyMutationInput = {
 }
 
 export type PasswordUncheckedUpdateManyInput = {
-  hash?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
+  hash?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PasswordNullableScalarRelationFilter = {
@@ -232,18 +232,18 @@ export type PasswordNullableScalarRelationFilter = {
 }
 
 export type PasswordCountOrderByAggregateInput = {
-  hash?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  hash?: Prisma.SortOrder
 }
 
 export type PasswordMaxOrderByAggregateInput = {
-  hash?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  hash?: Prisma.SortOrder
 }
 
 export type PasswordMinOrderByAggregateInput = {
-  hash?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  hash?: Prisma.SortOrder
 }
 
 export type PasswordCreateNestedOneWithoutUserInput = {
@@ -313,29 +313,29 @@ export type PasswordUncheckedUpdateWithoutUserInput = {
 
 
 export type PasswordSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  hash?: boolean
   email?: boolean
+  hash?: boolean
   User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["password"]>
 
 export type PasswordSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  hash?: boolean
   email?: boolean
+  hash?: boolean
   User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["password"]>
 
 export type PasswordSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  hash?: boolean
   email?: boolean
+  hash?: boolean
   User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["password"]>
 
 export type PasswordSelectScalar = {
-  hash?: boolean
   email?: boolean
+  hash?: boolean
 }
 
-export type PasswordOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"hash" | "email", ExtArgs["result"]["password"]>
+export type PasswordOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"email" | "hash", ExtArgs["result"]["password"]>
 export type PasswordInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   User?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -352,8 +352,8 @@ export type $PasswordPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     User: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    hash: string
     email: string
+    hash: string
   }, ExtArgs["result"]["password"]>
   composites: {}
 }
@@ -437,8 +437,8 @@ export interface PasswordDelegate<ExtArgs extends runtime.Types.Extensions.Inter
    * // Get first 10 Passwords
    * const passwords = await prisma.password.findMany({ take: 10 })
    * 
-   * // Only select the `hash`
-   * const passwordWithHashOnly = await prisma.password.findMany({ select: { hash: true } })
+   * // Only select the `email`
+   * const passwordWithEmailOnly = await prisma.password.findMany({ select: { email: true } })
    * 
    */
   findMany<T extends PasswordFindManyArgs>(args?: Prisma.SelectSubset<T, PasswordFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PasswordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -482,9 +482,9 @@ export interface PasswordDelegate<ExtArgs extends runtime.Types.Extensions.Inter
    *   ]
    * })
    * 
-   * // Create many Passwords and only return the `hash`
-   * const passwordWithHashOnly = await prisma.password.createManyAndReturn({
-   *   select: { hash: true },
+   * // Create many Passwords and only return the `email`
+   * const passwordWithEmailOnly = await prisma.password.createManyAndReturn({
+   *   select: { email: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -573,9 +573,9 @@ export interface PasswordDelegate<ExtArgs extends runtime.Types.Extensions.Inter
    *   ]
    * })
    * 
-   * // Update zero or more Passwords and only return the `hash`
-   * const passwordWithHashOnly = await prisma.password.updateManyAndReturn({
-   *   select: { hash: true },
+   * // Update zero or more Passwords and only return the `email`
+   * const passwordWithEmailOnly = await prisma.password.updateManyAndReturn({
+   *   select: { email: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -778,8 +778,8 @@ export interface Prisma__PasswordClient<T, Null = never, ExtArgs extends runtime
  * Fields of the Password model
  */
 export interface PasswordFieldRefs {
-  readonly hash: Prisma.FieldRef<"Password", 'String'>
   readonly email: Prisma.FieldRef<"Password", 'String'>
+  readonly hash: Prisma.FieldRef<"Password", 'String'>
 }
     
 
